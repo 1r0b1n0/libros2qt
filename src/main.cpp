@@ -10,9 +10,8 @@ using namespace rclcpp;
 
 int main(int argc, char* argv[])
 {
-    rclcpp::init(argc, argv);
-
     QCoreApplication a(argc, argv);
+    rclcpp::init(argc, argv);
 
     auto server = std::make_shared<TestNode>();
 
@@ -34,6 +33,7 @@ int main(int argc, char* argv[])
     executor.start();
 
     auto res = a.exec();
+    printf("Exited QT thread\n");
     rclcpp::shutdown();
     return res;
 }

@@ -4,6 +4,7 @@
 #include "rclcpp/any_executable.hpp"
 #include "rclcpp/scope_exit.hpp"
 #include <thread>
+#include <QCoreApplication>
 
 using namespace rclcpp;
 
@@ -28,10 +29,9 @@ QtExecutor::start()
        while(rclcpp::ok(this->context_))
        {
            wait_for_work();
-           printf("Got work !\n");
            onNewWork();
        }
-       printf("stopping !\n");
+       QMetaObject::invokeMethod(QCoreApplication::instance(), "quit", Qt::ConnectionType::QueuedConnection);
     });
 }
 

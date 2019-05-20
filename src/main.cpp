@@ -15,21 +15,9 @@ int main(int argc, char* argv[])
 
     auto server = std::make_shared<TestNode>();
 
-    //executors::SingleThreadedExecutor executor;
     QtExecutor executor;
     executor.add_node(server);
 
-    /*
-    QTimer rosPollTimer;
-    rosPollTimer.connect(&rosPollTimer, &QTimer::timeout, [&]() {
-        executor.spin_some();
-        if(rclcpp::ok() == false)
-        {
-            qApp->quit();
-        }
-    });
-    rosPollTimer.start(10);
-    */
     executor.start();
 
     auto res = a.exec();

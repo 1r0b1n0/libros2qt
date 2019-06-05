@@ -5,14 +5,11 @@
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="rov@robopec.com">rov</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MTI</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   
   <depend>rclcpp</depend>
-  <depend>lib_gnss</depend>
-  <depend>robopec_msgs</depend>
-  <depend>visualization_msgs</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

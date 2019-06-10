@@ -3,9 +3,9 @@
 <package format="2">
   <name>libros2qt</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Library that merges the event loops of ROS and Qt</description>
   <maintainer email="rov@robopec.com">rov</maintainer>
-  <license>MTI</license>
+  <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   

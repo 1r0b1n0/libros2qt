@@ -1,9 +1,9 @@
-#include "rclcpp/rclcpp.hpp"
+#include <rclcpp/rclcpp.hpp>
 #include <QCoreApplication>
 #include <QTimer>
 #include <rclcpp/executor.hpp>
 #include <QObject>
-#include "qt_executor.h"
+#include <libros2qt/qt_executor.h>
 #include "node.h"
 
 using namespace rclcpp;

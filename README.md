@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 ```
 
 ## Examples
-* [Simple example](examples/timer)
+* [Simple example](examples/timers)
 
 
 # Motivations

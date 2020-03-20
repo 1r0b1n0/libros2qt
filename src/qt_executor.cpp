@@ -29,7 +29,10 @@ QtExecutor::start()
        while(rclcpp::ok(this->context_))
        {
            wait_for_work();
-           onNewWork();
+           if(rclcpp::ok(this->context_)) {
+               // If we are shutting down, we must not call onNewWork because the QT Event loop is closed.
+               onNewWork();
+           }
        }
        QMetaObject::invokeMethod(QCoreApplication::instance(), "quit", Qt::ConnectionType::QueuedConnection);
     });

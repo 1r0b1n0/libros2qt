@@ -21,6 +21,11 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
+if(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
+    message("Foxy or newer rclcpp detected")
+    add_compile_definitions(POST_FOXY)
+endif(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 find_package(Qt5 COMPONENTS Core REQUIRED)

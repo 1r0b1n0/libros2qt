@@ -22,9 +22,17 @@
 #include "rclcpp/rate.hpp"
 #include "rclcpp/visibility_control.hpp"
 
+#ifdef POST_FOXY
+  using Executor = rclcpp::Executor;
+  using ExecutorOptions = rclcpp::ExecutorOptions;
+#else
+    using Executor = rclcpp::executor::Executor;
+    using ExecutorOptions = rclcpp::executor::ExecutorArgs;
+#endif
+
 /// Single-threaded executor implementation
 // This is the default executor created by rclcpp::spin.
-class QtExecutor : public QObject, public rclcpp::executor::Executor
+class QtExecutor : public QObject, public Executor
 {
     Q_OBJECT
 public:
@@ -32,8 +40,7 @@ public:
 
   /// Default constructor. See the default constructor for Executor.
   RCLCPP_PUBLIC
-  QtExecutor(
-    const rclcpp::executor::ExecutorArgs & args = rclcpp::executor::ExecutorArgs());
+  QtExecutor(const ExecutorOptions &args = ExecutorOptions());
 
   /// Default destrcutor.
   RCLCPP_PUBLIC

@@ -8,7 +8,7 @@
 
 using namespace rclcpp;
 
-QtExecutor::QtExecutor(const rclcpp::executor::ExecutorArgs & args)
+QtExecutor::QtExecutor(const ExecutorOptions &args)
 : executor::Executor(args) {
     connect(this, &QtExecutor::onNewWork, this, &QtExecutor::processWork, Qt::ConnectionType::BlockingQueuedConnection);
 }

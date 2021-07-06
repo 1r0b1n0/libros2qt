@@ -9,7 +9,7 @@
 using namespace rclcpp;
 
 QtExecutor::QtExecutor(const ExecutorOptions &args)
-: executor::Executor(args) {
+: Executor(args) {
     connect(this, &QtExecutor::onNewWork, this, &QtExecutor::processWork, Qt::ConnectionType::BlockingQueuedConnection);
 }
 

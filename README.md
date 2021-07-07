@@ -38,3 +38,7 @@ int main(int argc, char* argv[]) {
 The Qt library can be useful for ROS nodes when developping GUI applications, or even in headless nodes using network communications (tcp/ip, modbus, canbus, bluetooth ...).
 
 Both Qt and ROS2 need to have their own event loop spinning : `rclcpp::executors::SingleThreadedExecutor::spin()` for ROS, `QCoreApplication::exec()` for Qt.
+
+## License
+[MIT](https://opensource.org/licenses/MIT)
+

@@ -24,6 +24,7 @@ find_package(rclcpp REQUIRED)
 if(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
     message("Foxy or newer rclcpp detected")
     add_compile_definitions(POST_FOXY)
+    ament_export_definitions(POST_FOXY)
 endif(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

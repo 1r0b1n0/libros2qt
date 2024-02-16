@@ -29,18 +29,23 @@ endif(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-find_package(Qt5 COMPONENTS Core REQUIRED)
+
+find_package(Qt6 COMPONENTS Core REQUIRED)
+if(NOT Qt6_FOUND)
+    message("Qt6 not found, using Qt5")
+    find_package(Qt5 COMPONENTS Core REQUIRED)
+endif()
 
 include_directories(include)
 
 add_library(libros2qt SHARED src/qt_executor.cpp include/libros2qt/qt_executor.h)
-target_link_libraries(libros2qt Qt5::Core)
+target_link_libraries(libros2qt Qt::Core)
 ament_target_dependencies(libros2qt rclcpp)
 
 if(COMPILE_EXAMPLES)
   add_executable(testnode examples/timers/main.cpp examples/timers/node.cpp)
   ament_target_dependencies(testnode rclcpp)
-  target_link_libraries(testnode libros2qt Qt5::Core)
+  target_link_libraries(testnode libros2qt Qt::Core)
   install(TARGETS testnode DESTINATION lib/${PROJECT_NAME})
 endif()
 

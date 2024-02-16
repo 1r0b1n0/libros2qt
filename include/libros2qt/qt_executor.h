@@ -4,7 +4,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/executors/single_threaded_executor.hpp>
 #include <rclcpp/any_executable.hpp>
-#include <rclcpp/scope_exit.hpp>
+#include <rcpputils/scope_exit.hpp>
 
 
 #include <rmw/rmw.h>

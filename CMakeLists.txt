@@ -21,12 +21,6 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
-if(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
-    message("Foxy or newer rclcpp detected")
-    add_compile_definitions(POST_FOXY)
-    ament_export_definitions(POST_FOXY)
-endif(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
@@ -36,6 +30,13 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 include_directories(include)
 
 add_library(libros2qt SHARED src/qt_executor.cpp include/libros2qt/qt_executor.h)
+target_include_directories(libros2qt PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:include>")
+if(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
+  message("Foxy or newer rclcpp detected")
+  target_compile_definitions(libros2qt PUBLIC POST_FOXY)
+endif()
 target_link_libraries(libros2qt Qt${QT_VERSION_MAJOR}::Core)
 ament_target_dependencies(libros2qt rclcpp)
 
@@ -46,9 +47,7 @@ if(COMPILE_EXAMPLES)
   install(TARGETS testnode DESTINATION lib/${PROJECT_NAME})
 endif()
 
-#ament_export_interfaces(libros2qt HAS_LIBRARY_TARGET)
-ament_export_include_directories(include)
-ament_export_libraries(libros2qt)
+ament_export_targets(export_libros2qt HAS_LIBRARY_TARGET)
 
 install(
   DIRECTORY include/
@@ -57,6 +56,7 @@ install(
 
 install(
   TARGETS libros2qt
+  EXPORT export_libros2qt
   LIBRARY DESTINATION lib
   INCLUDES DESTINATION include
 )

@@ -37,13 +37,18 @@ if(rclcpp_VERSION_MAJOR GREATER_EQUAL 2)
   message("Foxy or newer rclcpp detected")
   target_compile_definitions(libros2qt PUBLIC POST_FOXY)
 endif()
-target_link_libraries(libros2qt Qt${QT_VERSION_MAJOR}::Core)
-ament_target_dependencies(libros2qt rclcpp)
+target_link_libraries(libros2qt 
+  Qt${QT_VERSION_MAJOR}::Core
+  rclcpp::rclcpp
+)
 
 if(COMPILE_EXAMPLES)
   add_executable(testnode examples/timers/main.cpp examples/timers/node.cpp)
-  ament_target_dependencies(testnode rclcpp)
-  target_link_libraries(testnode libros2qt Qt${QT_VERSION_MAJOR}::Core)
+  target_link_libraries(testnode 
+    libros2qt 
+    Qt${QT_VERSION_MAJOR}::Core
+    rclcpp::rclcpp
+  )
   install(TARGETS testnode DESTINATION lib/${PROJECT_NAME})
 endif()
 

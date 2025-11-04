@@ -8,7 +8,7 @@ In your main.cpp init the node in the following way :
 ```c++
 #include <QCoreApplication>
 #include <rclcpp/rclcpp.hpp>
-#include <lib_ros2_qt/qt_executor.h>
+#include <libros2qt/qt_executor.h>
 
 using namespace rclcpp;
 int main(int argc, char* argv[]) {

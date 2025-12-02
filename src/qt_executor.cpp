@@ -13,7 +13,10 @@ QtExecutor::QtExecutor(const ExecutorOptions &args)
 }
 
 QtExecutor::~QtExecutor() {
-    m_thread.join();
+    if(m_thread.joinable())
+    {
+        m_thread.join();
+    }
 }
 
 void
